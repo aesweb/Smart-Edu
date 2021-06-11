@@ -11,13 +11,13 @@ exports.getAboutPage = (req, res) => {
 };
 
 exports.getRegisterPage = (req, res) => {
-  res.status(200).render("Register", {
-    page_name: "Register",
+  res.status(200).render("register", {
+    page_name: "register",
   });
 };
 
 exports.getLoginPage = (req, res) => {
-  res.status(200).render("Login", {
-    page_name: "Login",
+  res.status(200).render("login", {
+    page_name: "login",
   });
 };
