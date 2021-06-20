@@ -10,12 +10,11 @@ exports.createCourse = async (req, res) => {
       category: req.body.category,
       user: req.session.userID,
     });
+    req.flash("success", `${course.name} has been  created successfully.`);
     res.status(201).redirect("/courses");
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      error,
-    });
+    req.flash("error", "Something happened!");
+    res.status(400).redirect("/courses");
   }
 };
 
@@ -45,7 +44,9 @@ exports.getAllCourses = async (req, res) => {
         { name: { $regex: ".*" + filter.name + ".*", $options: "i" } },
         { category: filter.category },
       ],
-    }).sort("-createdAt").populate("user");
+    })
+      .sort("-createdAt")
+      .populate("user");
     const categories = await Category.find();
     res.status(200).render("courses", {
       courses,
@@ -64,7 +65,9 @@ exports.getCourse = async (req, res) => {
   try {
     const user = await User.findById(req.session.userID);
     const categories = await Category.find();
-    const course = await Course.findOne({ slug: req.params.slug }).populate("user");
+    const course = await Course.findOne({ slug: req.params.slug }).populate(
+      "user"
+    );
 
     res.status(200).render("course", {
       course,

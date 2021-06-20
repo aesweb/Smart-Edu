@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const session = require('express-session');
+const session = require("express-session");
 const pageRoute = require("./routes/pageRoute");
 const courseRoute = require("./routes/courseRoute");
 const categoryRoute = require("./routes/categoryRoute");
 const userRoute = require("./routes/userRoute");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -25,10 +26,8 @@ mongoose
 
 app.set("view engine", "ejs");
 
-
-// GLOBAL 
+// GLOBAL
 global.userIN = null;
-
 
 //MİDDLEWARES
 app.use(express.static("public"));
@@ -36,17 +35,20 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(
   session({
-    secret: 'my_keyboard_cat', // Buradaki texti değiştireceğiz.
+    secret: "my_keyboard_cat", // Buradaki texti değiştireceğiz.
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/smartedu-db' }),
+    store: MongoStore.create({ mongoUrl: "mongodb://localhost/smartedu-db" }),
   })
 );
-
-
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+})
 
 //ROUTES
-app.use('*', (req, res, next) => {
+app.use("*", (req, res, next) => {
   userIN = req.session.userID;
   next();
 });
