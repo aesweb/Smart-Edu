@@ -12,7 +12,7 @@ const flash = require("connect-flash");
 const app = express();
 
 //CONNECT DB
-mongoose.connect("mongodb+srv://dbUser:92ZDJYFtvK8zYRno@cluster0.idbog.mongodb.net/smartedu-db?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://ahmet:aes.web+-@cluster0.idbog.mongodb.net/smartedu-db?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -37,7 +37,7 @@ app.use(session({
     secret: "my_keyboard_cat", // Buradaki texti değiştireceğiz.
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb+srv://dbUser:92ZDJYFtvK8zYRno@cluster0.idbog.mongodb.net/smartedu-db?retryWrites=true&w=majority" }),
+    store: MongoStore.create({ mongoUrl: "mongodb+srv://ahmet:aes.web+-@cluster0.idbog.mongodb.net/smartedu-db?retryWrites=true&w=majority" }),
   })
 );
 app.use(flash());
