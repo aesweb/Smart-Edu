@@ -13,7 +13,7 @@ const app = express();
 
 //CONNECT DB
 mongoose
-  .connect("mongodb+srv://aesweb:9rOkuhA23YkVQ3wX@cluster0.7hqkv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+  .connect("mongodb+srv://aesweb:9rOkuhA23YkVQ3wX@cluster0.7hqkv.mongodb.net/smartedu-app?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
