@@ -13,7 +13,7 @@ const app = express();
 
 //CONNECT DB
 mongoose
-  .connect("mongodb+srv://aesweb:9rOkuhA23YkVQ3wX@cluster0.7hqkv.mongodb.net/smartedu-app?retryWrites=true&w=majority", {
+  .connect("mongodb+srv://dbUser:92ZDJYFtvK8zYRno@cluster0.idbog.mongodb.net/smartedu-app?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -39,7 +39,7 @@ app.use(
     secret: "my_keyboard_cat", // Buradaki texti değiştireceğiz.
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb+srv://aesweb:9rOkuhA23YkVQ3wX@cluster0.7hqkv.mongodb.net/smartedu-app?retryWrites=true&w=majority" }),
+    store: MongoStore.create({ mongoUrl: "mongodb+srv://dbUser:92ZDJYFtvK8zYRno@cluster0.idbog.mongodb.net/smartedu-app?retryWrites=true&w=majority" }),
   })
 );
 app.use(flash());
